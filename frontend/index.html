@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Metro ASIR</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <img src="metro-asir.png" alt="Logo Metro ASIR" />
+  <h1>Metro ASIR</h1>
+</header>
+
+<nav>
+  <a href="mapa.html">Mapas</a>
+  <a href="horarios.html">Horarios</a>
+  <a href="tarifas.html">Tarifas</a>
+  <a href="#trayectos">Trayectos</a>
+  <a href="accesibilidad.html">Accesibilidad</a>
+</nav>
+
+<main>
+  <section id="trayectos">
+    <h2>Cálculo de Trayectos</h2>
+    <form id="formulario">
+      <label for="origen">Origen:</label>
+      <select id="origen" name="origen" required></select>
+
+      <label for="destino">Destino:</label>
+      <select id="destino" name="destino" required></select>
+
+      <label>
+        <input type="checkbox" id="accesibilidad" name="accesibilidad" value="si" />
+        Usar solo estaciones accesibles
+      </label>
+
+      <button type="submit">Calcular Ruta</button>
+    </form>
+
+    <div id="resultado"></div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Metro ASIR. Proyecto TFG de Enrique Montalvo y Álvaro Garcia.
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

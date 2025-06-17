@@ -1,0 +1,6 @@
+FROM php:8.2-apache
+
+RUN docker-php-ext-install mysqli
+
+# Opcional: para que Apache arranque en primer plano (ya lo hace por defecto en esta imagen)
+CMD ["apache2-foreground"]
