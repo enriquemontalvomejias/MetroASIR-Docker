@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  db:
+    image: mariadb:10.11
+    container_name: metroasir-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Montalvo00
+      MYSQL_DATABASE: metroasir
+      MYSQL_USER: metro
+      MYSQL_PASSWORD: Montalvo00
+    volumes:
+      - db_data:/var/lib/mysql
+      - /home/monti/Documentos/MetroASIR/db:/docker-entrypoint-initdb.d
+    networks:
+      - metro-net
+
+  backend:
+    build: ./backend
+    container_name: metroasir-backend
+    restart: always
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - db
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: metro
+      MYSQL_PASSWORD: Montalvo00
+      MYSQL_DATABASE: metroasir
+    networks:
+      - metro-net
+
+  frontend:
+    image: nginx:alpine
+    container_name: metroasir-frontend
+    restart: always
+    volumes:
+      - ./frontend:/usr/share/nginx/html:ro
+      - ./frontend/default.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "8080:80"
+    networks:
+      - metro-net
+
+volumes:
+  db_data:
+
+networks:
+  metro-net:
+    driver: bridge
